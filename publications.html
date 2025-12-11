@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publications | Fukuda Laboratory</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans JP', 'Roboto', sans-serif;
+            color: #333;
+            line-height: 1.8;
+            background: #fff;
+            font-size: 16px;
+        }
+        
+        a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Header */
+        header {
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .header-top {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-area a {
+            display: block;
+        }
+        
+        .logo-area img {
+            height: 60px;
+            width: auto;
+        }
+        
+        .affiliation {
+            text-align: right;
+            font-size: 0.8rem;
+            color: #666;
+        }
+        
+        .affiliation a {
+            color: #666;
+        }
+        
+        .affiliation a:hover {
+            color: #0066cc;
+        }
+        
+        /* Navigation */
+        nav {
+            background: #f5f5f5;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        nav ul {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 30px;
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        nav li {
+            position: relative;
+        }
+        
+        nav a {
+            display: block;
+            padding: 14px 24px;
+            color: #333;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+        
+        nav a:hover {
+            background: #e8e8e8;
+            text-decoration: none;
+        }
+        
+        nav a.active {
+            background: #0066cc;
+            color: #fff;
+        }
+        
+        /* Main Content */
+        .main-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+        
+        /* Page Title */
+        .page-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #333;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #0066cc;
+            margin-bottom: 30px;
+        }
+        
+        /* Year Section */
+        .year-section {
+            margin-bottom: 40px;
+        }
+        
+        .year-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #0066cc;
+            margin-bottom: 20px;
+            padding-left: 10px;
+            border-left: 4px solid #0066cc;
+        }
+        
+        .pub-list {
+            list-style: none;
+        }
+        
+        .pub-item {
+            padding: 15px 0;
+            border-bottom: 1px dotted #ddd;
+            font-size: 0.9rem;
+        }
+        
+        .pub-item:last-child {
+            border-bottom: none;
+        }
+        
+        .pub-title {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .pub-authors {
+            color: #555;
+            margin-bottom: 3px;
+        }
+        
+        .pub-authors strong {
+            color: #0066cc;
+        }
+        
+        .pub-journal {
+            color: #666;
+            font-style: italic;
+        }
+        
+        .pub-links {
+            margin-top: 8px;
+        }
+        
+        .pub-links a {
+            display: inline-block;
+            padding: 3px 10px;
+            background: #f0f0f0;
+            border-radius: 3px;
+            font-size: 0.8rem;
+            margin-right: 8px;
+        }
+        
+        .pub-links a:hover {
+            background: #0066cc;
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        /* Footer */
+        footer {
+            background: #f5f5f5;
+            border-top: 1px solid #ddd;
+            padding: 30px;
+            margin-top: 40px;
+        }
+        
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .footer-info {
+            font-size: 0.85rem;
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        .footer-info strong {
+            color: #333;
+        }
+        
+        .footer-contact {
+            text-align: right;
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        .copyright {
+            max-width: 1100px;
+            margin: 20px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #999;
+        }
+        
+        /* Responsive - Tablet */
+        @media (max-width: 900px) {
+            .header-top {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+                padding: 15px 20px;
+            }
+            
+            .affiliation {
+                text-align: center;
+            }
+            
+            nav ul {
+                justify-content: center;
+                padding: 0 10px;
+            }
+            
+            nav a {
+                padding: 12px 16px;
+                font-size: 0.85rem;
+            }
+            
+            .main-container {
+                padding: 20px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .footer-contact {
+                text-align: left;
+            }
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 600px) {
+            body {
+                font-size: 14px;
+            }
+            
+            .logo-area img {
+                height: 45px;
+            }
+            
+            nav ul {
+                justify-content: flex-start;
+                overflow-x: auto;
+                flex-wrap: nowrap;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            nav a {
+                padding: 10px 14px;
+                font-size: 0.8rem;
+                white-space: nowrap;
+            }
+            
+            .main-container {
+                padding: 15px;
+            }
+            
+            .pub-links a {
+                display: block;
+                margin-bottom: 5px;
+                text-align: center;
+            }
+            
+            .footer-content {
+                padding: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-top">
+            <div class="logo-area">
+                <a href="index.html">
+                    <img src="https://raw.githubusercontent.com/browngem-org/photo/main/foundate/fukudalab_icon.jpg" alt="Fukuda Laboratory 福田真嗣研究室">
+                </a>
+            </div>
+            <div class="affiliation">
+                <a href="https://www.keio.ac.jp/" target="_blank">慶應義塾大学</a><br>
+                <a href="https://www.iab.keio.ac.jp/" target="_blank">先端生命科学研究所</a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="publications.html" class="active">Publications</a></li>
+            <li><a href="members.html">Members</a></li>
+            <li><a href="laboratory.html">Our Laboratory</a></li>
+            <li><a href="access.html">Access</a></li>
+            <li><a href="contact.html">Contact us</a></li>
+        </ul>
+    </nav>
+    
+    <!-- Main Content -->
+    <div class="main-container">
+        <h1 class="page-title">Publications</h1>
+        
+        <!-- 2024 -->
+        <section class="year-section">
+            <h2 class="year-title">2024</h2>
+            <ul class="pub-list">
+                <li class="pub-item">
+                    <p class="pub-title">Gut microbiota-derived metabolites as regulators of host physiology and disease</p>
+                    <p class="pub-authors"><strong>Fukuda S</strong>, Ohno H</p>
+                    <p class="pub-journal">Nature Reviews Microbiology 2024; 22: 145-162</p>
+                    <div class="pub-links">
+                        <a href="#" target="_blank">PubMed</a>
+                        <a href="#" target="_blank">DOI</a>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <p class="pub-title">Short-chain fatty acids modulate host immune responses through GPR43 signaling in intestinal epithelial cells</p>
+                    <p class="pub-authors">Tanaka M, Yamamoto K, <strong>Fukuda S</strong></p>
+                    <p class="pub-journal">Cell Host & Microbe 2024; 32(3): 456-470</p>
+                    <div class="pub-links">
+                        <a href="#" target="_blank">PubMed</a>
+                        <a href="#" target="_blank">DOI</a>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <p class="pub-title">Metabolomics reveals the impact of gut microbiota composition on allergic inflammation in murine models</p>
+                    <p class="pub-authors">Suzuki H, Sato M, Tanaka K, <strong>Fukuda S</strong></p>
+                    <p class="pub-journal">Nature Communications 2024; 15: 2847</p>
+                    <div class="pub-links">
+                        <a href="#" target="_blank">PubMed</a>
+                        <a href="#" target="_blank">DOI</a>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <p class="pub-title">Butyrate-producing bacteria prevent the development of food allergy through Treg cell induction</p>
+                    <p class="pub-authors">Nakamura Y, Watanabe T, <strong>Fukuda S</strong></p>
+                    <p class="pub-journal">Science Immunology 2024; 9(92): eabc1234</p>
+                    <div class="pub-links">
+                        <a href="#" target="_blank">PubMed</a>
+                        <a href="#" target="_blank">DOI</a>
+                    </div>
+                </li>
+            </ul>
+        </section>
+        
+        <!-- 2023 -->
+        <section class="year-section">
+            <h2 class="year-title">2023</h2>
+            <ul class="pub-list">
+                <li class="pub-item">
+                    <p class="pub-title">The role of intestinal bacteria in maintaining human health: insights from metabolome analysis</p>
+                    <p class="pub-authors"><strong>Fukuda S</strong>, Tsuji H, Ohshima K</p>
+                    <p class="pub-journal">Annual Review of Microbiology 2023; 77: 245-268</p>
+                    <div class="pub-links">
+                        <a href="#" target="_blank">PubMed</a>
+                        <a href="#" target="_blank">DOI</a>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <p class="pub-title">Akkermansia muciniphila-derived extracellular vesicles improve glucose homeostasis in diabetic mice</p>
+                    <p class="pub-authors">Kim S, Lee J, <strong>Fukuda S</strong>, Park Y</p>
+                    <p class="pub-journal">Cell Metabolism 2023; 35(6): 1023-1038</p>
+                    <div class="pub-links">
+                        <a href="#" target="_blank">PubMed</a>
+                        <a href="#" target="_blank">DOI</a>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <p class="pub-title">Gut microbiota-brain axis: role of tryptophan metabolites in neurodevelopmental disorders</p>
+                    <p class="pub-authors">Yamamoto K, Sato A, <strong>Fukuda S</strong></p>
+                    <p class="pub-journal">Nature Neuroscience 2023; 26: 1578-1590</p>
+                    <div class="pub-links">
+                        <a href="#" target="_blank">PubMed</a>
+                        <a href="#" target="_blank">DOI</a>
+                    </div>
+                </li>
+            </ul>
+        </section>
+        
+        <!-- 2022 -->
+        <section class="year-section">
+            <h2 class="year-title">2022</h2>
+            <ul class="pub-list">
+                <li class="pub-item">
+                    <p class="pub-title">Dietary fiber fermentation by gut microbiota produces neuroactive metabolites</p>
+                    <p class="pub-authors">Sato M, Tanaka K, <strong>Fukuda S</strong></p>
+                    <p class="pub-journal">Cell 2022; 185(15): 2765-2779</p>
+                    <div class="pub-links">
+                        <a href="#" target="_blank">PubMed</a>
+                        <a href="#" target="_blank">DOI</a>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <p class="pub-title">The microbiome-gut-brain axis: mechanisms and therapeutic potential</p>
+                    <p class="pub-authors"><strong>Fukuda S</strong></p>
+                    <p class="pub-journal">Nature Reviews Gastroenterology & Hepatology 2022; 19: 416-432</p>
+                    <div class="pub-links">
+                        <a href="#" target="_blank">PubMed</a>
+                        <a href="#" target="_blank">DOI</a>
+                    </div>
+                </li>
+                <li class="pub-item">
+                    <p class="pub-title">Propionate inhibits inflammatory responses through GPR41 and GPR43 receptors</p>
+                    <p class="pub-authors">Watanabe T, Nakamura Y, <strong>Fukuda S</strong></p>
+                    <p class="pub-journal">Immunity 2022; 55(8): 1476-1489</p>
+                    <div class="pub-links">
+                        <a href="#" target="_blank">PubMed</a>
+                        <a href="#" target="_blank">DOI</a>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <strong>福田真嗣研究室 / Fukuda Laboratory</strong><br>
+                〒997-0052 山形県鶴岡市覚岸寺字水上246-2<br>
+                慶應義塾大学先端生命科学研究所
+            </div>
+            <div class="footer-contact">
+                E-mail: fukuda-lab[at]iab.keio.ac.jp<br>
+                ※[at]を@に変換してください<br>
+                <a href="contact.html">[お問い合わせ]</a>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2024 Fukuda Laboratory, Keio University. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>

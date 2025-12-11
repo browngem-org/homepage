@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access | Fukuda Laboratory</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Noto Sans JP', 'Roboto', sans-serif; color: #333; line-height: 1.8; background: #fff; font-size: 16px; }
+        a { color: #0066cc; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        
+        header { border-bottom: 1px solid #ddd; }
+        .header-top { max-width: 1100px; margin: 0 auto; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center; }
+        .logo-area a { display: block; }
+        .logo-area img { height: 60px; width: auto; }
+        .affiliation { text-align: right; font-size: 0.8rem; color: #666; }
+        .affiliation a { color: #666; }
+        .affiliation a:hover { color: #0066cc; }
+        
+        nav { background: #f5f5f5; border-bottom: 1px solid #ddd; }
+        nav ul { max-width: 1100px; margin: 0 auto; padding: 0 30px; list-style: none; display: flex; flex-wrap: wrap; }
+        nav a { display: block; padding: 14px 24px; color: #333; font-size: 0.9rem; font-weight: 500; transition: background 0.2s; }
+        nav a:hover { background: #e8e8e8; text-decoration: none; }
+        nav a.active { background: #0066cc; color: #fff; }
+        
+        .main-container { max-width: 1100px; margin: 0 auto; padding: 30px; }
+        .page-title { font-size: 1.5rem; font-weight: 500; color: #333; padding-bottom: 15px; border-bottom: 3px solid #0066cc; margin-bottom: 30px; }
+        
+        .section { margin-bottom: 40px; }
+        .section-title { font-size: 1.1rem; font-weight: 500; color: #0066cc; margin-bottom: 20px; padding-left: 10px; border-left: 4px solid #0066cc; }
+        
+        .address-box { background: #f9f9f9; padding: 25px 30px; border-radius: 5px; margin-bottom: 30px; }
+        .address-box p { font-size: 0.95rem; margin-bottom: 8px; }
+        .address-box strong { color: #333; }
+        
+        .map-container { width: 100%; height: 400px; border-radius: 5px; overflow: hidden; margin-bottom: 30px; }
+        .map-container iframe { width: 100%; height: 100%; border: none; }
+        
+        .access-info { background: #f9f9f9; padding: 25px 30px; border-radius: 5px; }
+        .access-info h3 { font-size: 1rem; font-weight: 500; color: #333; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px dotted #ddd; }
+        .access-info ul { list-style: none; font-size: 0.9rem; }
+        .access-info li { padding: 8px 0; padding-left: 20px; position: relative; }
+        .access-info li::before { content: '>'; position: absolute; left: 0; color: #0066cc; }
+        
+        footer { background: #f5f5f5; border-top: 1px solid #ddd; padding: 30px; margin-top: 40px; }
+        .footer-content { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 20px; }
+        .footer-info { font-size: 0.85rem; color: #666; line-height: 1.8; }
+        .footer-info strong { color: #333; }
+        .footer-contact { text-align: right; font-size: 0.85rem; color: #666; }
+        .copyright { max-width: 1100px; margin: 20px auto 0; padding-top: 20px; border-top: 1px solid #ddd; text-align: center; font-size: 0.8rem; color: #999; }
+        
+        @media (max-width: 900px) {
+            .header-top { flex-direction: column; text-align: center; gap: 15px; padding: 15px 20px; }
+            .affiliation { text-align: center; }
+            nav ul { justify-content: center; padding: 0 10px; }
+            nav a { padding: 12px 16px; font-size: 0.85rem; }
+            .main-container { padding: 20px; }
+            .map-container { height: 300px; }
+            .footer-content { flex-direction: column; }
+            .footer-contact { text-align: left; }
+        }
+        
+        @media (max-width: 600px) {
+            body { font-size: 14px; }
+            .logo-area img { height: 45px; }
+            nav ul { justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; }
+            nav a { padding: 10px 14px; font-size: 0.8rem; white-space: nowrap; }
+            .main-container { padding: 15px; }
+            .address-box { padding: 20px; }
+            .map-container { height: 250px; }
+            .access-info { padding: 20px; }
+            .footer-content { padding: 0 10px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <div class="logo-area">
+                <a href="index.html">
+                    <img src="https://raw.githubusercontent.com/browngem-org/photo/main/foundate/fukudalab_icon.jpg" alt="Fukuda Laboratory">
+                </a>
+            </div>
+            <div class="affiliation">
+                <a href="https://www.keio.ac.jp/" target="_blank">慶應義塾大学</a><br>
+                <a href="https://www.iab.keio.ac.jp/" target="_blank">先端生命科学研究所</a>
+            </div>
+        </div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="publications.html">Publications</a></li>
+            <li><a href="members.html">Members</a></li>
+            <li><a href="laboratory.html">Our Laboratory</a></li>
+            <li><a href="access.html" class="active">Access</a></li>
+            <li><a href="contact.html">Contact us</a></li>
+        </ul>
+    </nav>
+    
+    <div class="main-container">
+        <h1 class="page-title">Access</h1>
+        
+        <section class="section">
+            <h2 class="section-title">所在地 / Address</h2>
+            <div class="address-box">
+                <p><strong>福田真嗣研究室 / Fukuda Laboratory</strong></p>
+                <p>〒997-0052</p>
+                <p>山形県鶴岡市覚岸寺字水上246-2</p>
+                <p>慶應義塾大学先端生命科学研究所</p>
+                <p style="margin-top: 15px;">
+                    <strong>Institute for Advanced Biosciences, Keio University</strong><br>
+                    246-2 Mizukami, Kakuganji, Tsuruoka, Yamagata 997-0052, Japan
+                </p>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">地図 / Map</h2>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3114.5!2d139.8267!3d38.7275!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f8b9c0a0a0a0a0a%3A0x0!2z5oW25oeJ576p5aGY5aSn5a2m5YWI56uv55Sf5ZG956eR5a2m56CU56m25omA!5e0!3m2!1sja!2sjp!4v1234567890" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">アクセス方法 / How to Access</h2>
+            <div class="access-info">
+                <h3>電車・バスでお越しの場合</h3>
+                <ul>
+                    <li>JR羽越本線「鶴岡駅」下車</li>
+                    <li>鶴岡駅より庄内交通バス「湯野浜温泉行き」約15分、「慶應先端研前」下車</li>
+                    <li>または、鶴岡駅よりタクシーで約10分</li>
+                </ul>
+                
+                <h3 style="margin-top: 25px;">飛行機でお越しの場合</h3>
+                <ul>
+                    <li>庄内空港より連絡バスで鶴岡駅まで約25分</li>
+                    <li>庄内空港よりタクシーで約20分</li>
+                </ul>
+                
+                <h3 style="margin-top: 25px;">お車でお越しの場合</h3>
+                <ul>
+                    <li>日本海東北自動車道「鶴岡IC」より約10分</li>
+                    <li>駐車場あり（来訪者用）</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <strong>福田真嗣研究室 / Fukuda Laboratory</strong><br>
+                〒997-0052 山形県鶴岡市覚岸寺字水上246-2<br>
+                慶應義塾大学先端生命科学研究所
+            </div>
+            <div class="footer-contact">
+                E-mail: fukuda-lab[at]iab.keio.ac.jp<br>
+                ※[at]を@に変換してください<br>
+                <a href="contact.html">[お問い合わせ]</a>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2024 Fukuda Laboratory, Keio University. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>

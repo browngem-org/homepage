@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Laboratory | Fukuda Laboratory</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans JP', 'Roboto', sans-serif;
+            color: #333;
+            line-height: 1.8;
+            background: #fff;
+            font-size: 16px;
+        }
+        
+        a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        header {
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .header-top {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-area a {
+            display: block;
+        }
+        
+        .logo-area img {
+            height: 60px;
+            width: auto;
+        }
+        
+        .affiliation {
+            text-align: right;
+            font-size: 0.8rem;
+            color: #666;
+        }
+        
+        .affiliation a {
+            color: #666;
+        }
+        
+        .affiliation a:hover {
+            color: #0066cc;
+        }
+        
+        nav {
+            background: #f5f5f5;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        nav ul {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 30px;
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        nav a {
+            display: block;
+            padding: 14px 24px;
+            color: #333;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+        
+        nav a:hover {
+            background: #e8e8e8;
+            text-decoration: none;
+        }
+        
+        nav a.active {
+            background: #0066cc;
+            color: #fff;
+        }
+        
+        .main-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+        
+        .page-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #333;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #0066cc;
+            margin-bottom: 30px;
+        }
+        
+        .group-photo {
+            width: 100%;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+        
+        .group-photo img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+        }
+        
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #0066cc;
+            margin-bottom: 20px;
+            padding-left: 10px;
+            border-left: 4px solid #0066cc;
+        }
+        
+        .section-description {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .photo-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
+            aspect-ratio: 4/3;
+        }
+        
+        .photo-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .photo-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .photo-item .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+        
+        .equipment-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        
+        .equipment-item {
+            padding: 15px 20px;
+            background: #f9f9f9;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .equipment-item strong {
+            color: #0066cc;
+        }
+        
+        footer {
+            background: #f5f5f5;
+            border-top: 1px solid #ddd;
+            padding: 30px;
+            margin-top: 40px;
+        }
+        
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .footer-info {
+            font-size: 0.85rem;
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        .footer-info strong {
+            color: #333;
+        }
+        
+        .footer-contact {
+            text-align: right;
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        .copyright {
+            max-width: 1100px;
+            margin: 20px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #999;
+        }
+        
+        @media (max-width: 900px) {
+            .header-top {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+                padding: 15px 20px;
+            }
+            .affiliation { text-align: center; }
+            nav ul { justify-content: center; padding: 0 10px; }
+            nav a { padding: 12px 16px; font-size: 0.85rem; }
+            .main-container { padding: 20px; }
+            .photo-gallery { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+            .equipment-list { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
+            .footer-content { flex-direction: column; }
+            .footer-contact { text-align: left; }
+        }
+        
+        @media (max-width: 600px) {
+            body { font-size: 14px; }
+            .logo-area img { height: 45px; }
+            nav ul { justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; }
+            nav a { padding: 10px 14px; font-size: 0.8rem; white-space: nowrap; }
+            .main-container { padding: 15px; }
+            .photo-gallery { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+            .photo-item .caption { font-size: 0.75rem; padding: 8px; }
+            .equipment-list { grid-template-columns: 1fr; }
+            .footer-content { padding: 0 10px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <div class="logo-area">
+                <a href="index.html">
+                    <img src="https://raw.githubusercontent.com/browngem-org/photo/main/foundate/fukudalab_icon.jpg" alt="Fukuda Laboratory">
+                </a>
+            </div>
+            <div class="affiliation">
+                <a href="https://www.keio.ac.jp/" target="_blank">慶應義塾大学</a><br>
+                <a href="https://www.iab.keio.ac.jp/" target="_blank">先端生命科学研究所</a>
+            </div>
+        </div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="publications.html">Publications</a></li>
+            <li><a href="members.html">Members</a></li>
+            <li><a href="laboratory.html" class="active">Our Laboratory</a></li>
+            <li><a href="access.html">Access</a></li>
+            <li><a href="contact.html">Contact us</a></li>
+        </ul>
+    </nav>
+    
+    <div class="main-container">
+        <h1 class="page-title">Our Laboratory</h1>
+        
+        <!-- Lab Group Photo -->
+        <section class="section">
+            <div class="group-photo">
+                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1200" alt="福田研究室 集合写真">
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">研究室風景 / Lab Scenes</h2>
+            <p class="section-description">アットホームな雰囲気のなかで気持ちよく研究に集中できる環境作りに努めています。</p>
+            <div class="photo-gallery">
+                <div class="photo-item">
+                    <img src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=400" alt="研究室全景">
+                    <span class="caption">研究室全景</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?w=400" alt="実験風景">
+                    <span class="caption">実験風景</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?w=400" alt="データ解析">
+                    <span class="caption">データ解析</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=400" alt="分析機器">
+                    <span class="caption">分析機器</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=400" alt="ディスカッション">
+                    <span class="caption">ディスカッション</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=400" alt="セミナー発表">
+                    <span class="caption">セミナー発表</span>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">課外活動 / Activities</h2>
+            <p class="section-description">いい研究をするためには、ときに遊ぶことも大事です。</p>
+            <div class="photo-gallery">
+                <div class="photo-item">
+                    <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400" alt="BBQ">
+                    <span class="caption">夏のBBQ大会</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=400" alt="登山">
+                    <span class="caption">研究室登山</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400" alt="学会">
+                    <span class="caption">学会参加</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=400" alt="歓迎会">
+                    <span class="caption">歓迎会</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=400" alt="旅行">
+                    <span class="caption">研究室旅行</span>
+                </div>
+                <div class="photo-item">
+                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400" alt="懇親会">
+                    <span class="caption">懇親会</span>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">主な設備 / Equipment</h2>
+            <div class="equipment-list">
+                <div class="equipment-item"><strong>質量分析計</strong><br>LC-MS/MS、GC-MS</div>
+                <div class="equipment-item"><strong>DNAシーケンサー</strong><br>次世代シーケンサー（Illumina）</div>
+                <div class="equipment-item"><strong>嫌気チャンバー</strong><br>嫌気性細菌の培養用</div>
+                <div class="equipment-item"><strong>フローサイトメーター</strong><br>細胞解析用</div>
+                <div class="equipment-item"><strong>リアルタイムPCR</strong><br>遺伝子発現解析用</div>
+                <div class="equipment-item"><strong>クリーンベンチ</strong><br>無菌操作用</div>
+            </div>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <strong>福田真嗣研究室 / Fukuda Laboratory</strong><br>
+                〒997-0052 山形県鶴岡市覚岸寺字水上246-2<br>
+                慶應義塾大学先端生命科学研究所
+            </div>
+            <div class="footer-contact">
+                E-mail: fukuda-lab[at]iab.keio.ac.jp<br>
+                ※[at]を@に変換してください<br>
+                <a href="contact.html">[お問い合わせ]</a>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2024 Fukuda Laboratory, Keio University. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>

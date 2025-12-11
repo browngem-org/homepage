@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Members | Fukuda Laboratory</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans JP', 'Roboto', sans-serif;
+            color: #333;
+            line-height: 1.8;
+            background: #fff;
+            font-size: 16px;
+        }
+        
+        a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Header */
+        header {
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .header-top {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-area a {
+            display: block;
+        }
+        
+        .logo-area img {
+            height: 60px;
+            width: auto;
+        }
+        
+        .affiliation {
+            text-align: right;
+            font-size: 0.8rem;
+            color: #666;
+        }
+        
+        .affiliation a {
+            color: #666;
+        }
+        
+        .affiliation a:hover {
+            color: #0066cc;
+        }
+        
+        /* Navigation */
+        nav {
+            background: #f5f5f5;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        nav ul {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 30px;
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        nav li {
+            position: relative;
+        }
+        
+        nav a {
+            display: block;
+            padding: 14px 24px;
+            color: #333;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+        
+        nav a:hover {
+            background: #e8e8e8;
+            text-decoration: none;
+        }
+        
+        nav a.active {
+            background: #0066cc;
+            color: #fff;
+        }
+        
+        /* Main Content */
+        .main-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+        
+        /* Page Title */
+        .page-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #333;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #0066cc;
+            margin-bottom: 30px;
+        }
+        
+        /* Member Category */
+        .member-category {
+            margin-bottom: 40px;
+        }
+        
+        .category-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #0066cc;
+            margin-bottom: 20px;
+            padding-left: 10px;
+            border-left: 4px solid #0066cc;
+        }
+        
+        /* Detail List - 共通スタイル */
+        .detail-list {
+            list-style: none;
+            font-size: 0.85rem;
+            color: #555;
+            margin: 10px 0;
+        }
+        
+        .detail-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+            padding: 2px 0;
+            line-height: 1.6;
+        }
+        
+        .detail-list li i {
+            color: #999;
+            font-size: 0.8rem;
+            width: 14px;
+            text-align: center;
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+        
+        .detail-list a {
+            color: #0066cc;
+        }
+        
+        /* Professor Card */
+        .professor-card {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 30px;
+            padding: 25px;
+            background: #f9f9f9;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .professor-photo {
+            width: 180px;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 3px;
+        }
+        
+        .professor-info h3 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        
+        .professor-info .name-en {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .professor-info .title {
+            font-size: 0.9rem;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .professor-info .affiliation-item {
+            font-size: 0.85rem;
+            color: #555;
+            margin-bottom: 3px;
+        }
+        
+        .professor-info .field {
+            font-size: 0.9rem;
+            color: #333;
+            margin: 12px 0 8px;
+        }
+        
+        .professor-info .likes {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dotted #ddd;
+        }
+        
+        .professor-info .likes strong {
+            color: #333;
+        }
+        
+        /* Member Grid */
+        .member-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 20px;
+        }
+        
+        .member-card {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 15px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 5px;
+        }
+        
+        .member-photo {
+            width: 100px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 3px;
+        }
+        
+        .member-info h4 {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 3px;
+        }
+        
+        .member-info .name-en {
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .member-info .grade {
+            font-size: 0.75rem;
+            color: #fff;
+            background: #0066cc;
+            padding: 2px 8px;
+            border-radius: 3px;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+        
+        .member-info .detail-list {
+            font-size: 0.8rem;
+            margin: 8px 0;
+        }
+        
+        .member-info .detail-list li {
+            padding: 1px 0;
+        }
+        
+        .member-info .detail-list li i {
+            font-size: 0.75rem;
+            width: 12px;
+            margin-top: 2px;
+        }
+        
+        .member-info .likes {
+            font-size: 0.8rem;
+            color: #666;
+        }
+        
+        /* Footer */
+        footer {
+            background: #f5f5f5;
+            border-top: 1px solid #ddd;
+            padding: 30px;
+            margin-top: 40px;
+        }
+        
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .footer-info {
+            font-size: 0.85rem;
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        .footer-info strong {
+            color: #333;
+        }
+        
+        .footer-contact {
+            text-align: right;
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        .copyright {
+            max-width: 1100px;
+            margin: 20px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #999;
+        }
+        
+        /* Responsive - Tablet */
+        @media (max-width: 900px) {
+            .header-top {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+                padding: 15px 20px;
+            }
+            
+            .affiliation {
+                text-align: center;
+            }
+            
+            nav ul {
+                justify-content: center;
+                padding: 0 10px;
+            }
+            
+            nav a {
+                padding: 12px 16px;
+                font-size: 0.85rem;
+            }
+            
+            .main-container {
+                padding: 20px;
+            }
+            
+            .professor-card {
+                grid-template-columns: 150px 1fr;
+                gap: 20px;
+                padding: 20px;
+            }
+            
+            .professor-photo {
+                width: 150px;
+                height: 180px;
+            }
+            
+            .member-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .footer-contact {
+                text-align: left;
+            }
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 600px) {
+            body {
+                font-size: 14px;
+            }
+            
+            .logo-area img {
+                height: 45px;
+            }
+            
+            nav ul {
+                justify-content: flex-start;
+                overflow-x: auto;
+                flex-wrap: nowrap;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            nav a {
+                padding: 10px 14px;
+                font-size: 0.8rem;
+                white-space: nowrap;
+            }
+            
+            .main-container {
+                padding: 15px;
+            }
+            
+            .professor-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .professor-photo {
+                width: 150px;
+                height: 180px;
+                margin: 0 auto;
+            }
+            
+            .professor-info .detail-list {
+                text-align: left;
+            }
+            
+            .member-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .member-card {
+                grid-template-columns: 80px 1fr;
+                gap: 12px;
+                padding: 15px;
+            }
+            
+            .member-photo {
+                width: 80px;
+                height: 100px;
+            }
+            
+            .footer-content {
+                padding: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-top">
+            <div class="logo-area">
+                <a href="index.html">
+                    <img src="https://raw.githubusercontent.com/browngem-org/photo/main/foundate/fukudalab_icon.jpg" alt="Fukuda Laboratory 福田真嗣研究室">
+                </a>
+            </div>
+            <div class="affiliation">
+                <a href="https://www.keio.ac.jp/" target="_blank">慶應義塾大学</a><br>
+                <a href="https://www.iab.keio.ac.jp/" target="_blank">先端生命科学研究所</a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="publications.html">Publications</a></li>
+            <li><a href="members.html" class="active">Members</a></li>
+            <li><a href="laboratory.html">Our Laboratory</a></li>
+            <li><a href="access.html">Access</a></li>
+            <li><a href="contact.html">Contact us</a></li>
+        </ul>
+    </nav>
+    
+    <!-- Main Content -->
+    <div class="main-container">
+        <h1 class="page-title">Members</h1>
+        
+        <!-- Professor -->
+        <section class="member-category">
+            <h2 class="category-title">Principal Investigator</h2>
+            <div class="professor-card">
+                <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=300" alt="福田真嗣" class="professor-photo">
+                <div class="professor-info">
+                    <h3>福田 真嗣</h3>
+                    <p class="name-en">FUKUDA Shinji</p>
+                    <p class="title">所長・教授</p>
+                    <p class="affiliation-item">自然科学研究機構 生命創成探究センター 客員教授 (兼務)</p>
+                    <p class="affiliation-item">国立研究開発法人 理化学研究所 客員主管研究員 (兼務)</p>
+                    <p class="field">腸内細菌学・メタボロミクス・システム生物学</p>
+                    <ul class="detail-list">
+                        <li><i class="fa-solid fa-location-dot"></i>鶴岡メタボロームキャンパス</li>
+                        <li><i class="fa-solid fa-envelope"></i>fukuda at iab.keio.ac.jp</li>
+                        <li><i class="fa-solid fa-house"></i><a href="https://www.iab.keio.ac.jp/" target="_blank">https://www.iab.keio.ac.jp/</a></li>
+                        <li><i class="fa-solid fa-microphone"></i><a href="#">インタビュー記事</a></li>
+                    </ul>
+                    <p class="likes"><strong>好きなもの：</strong>温泉、日本酒、発酵食品</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Researchers -->
+        <section class="member-category">
+            <h2 class="category-title">Researchers / 研究員</h2>
+            <div class="member-grid">
+                <div class="member-card">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200" alt="山田太郎" class="member-photo">
+                    <div class="member-info">
+                        <h4>山田 太郎</h4>
+                        <p class="name-en">YAMADA Taro</p>
+                        <span class="grade">Postdoc</span>
+                        <ul class="detail-list">
+                            <li><i class="fa-solid fa-location-dot"></i>鶴岡メタボロームキャンパス</li>
+                            <li><i class="fa-solid fa-envelope"></i>yamada at iab.keio.ac.jp</li>
+                            <li><i class="fa-solid fa-house"></i><a href="#">個人ページ</a></li>
+                        </ul>
+                        <p class="likes">好き：ギター、コーヒー、登山</p>
+                    </div>
+                </div>
+                <div class="member-card">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200" alt="鈴木花子" class="member-photo">
+                    <div class="member-info">
+                        <h4>鈴木 花子</h4>
+                        <p class="name-en">SUZUKI Hanako</p>
+                        <span class="grade">Assistant Professor</span>
+                        <ul class="detail-list">
+                            <li><i class="fa-solid fa-location-dot"></i>鶴岡メタボロームキャンパス</li>
+                            <li><i class="fa-solid fa-envelope"></i>suzuki at iab.keio.ac.jp</li>
+                        </ul>
+                        <p class="likes">好き：読書、ピアノ、猫</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Students -->
+        <section class="member-category">
+            <h2 class="category-title">Students / 学生</h2>
+            <div class="member-grid">
+                <div class="member-card">
+                    <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=200" alt="田中健太" class="member-photo">
+                    <div class="member-info">
+                        <h4>田中 健太</h4>
+                        <p class="name-en">TANAKA Kenta</p>
+                        <span class="grade">D3</span>
+                        <ul class="detail-list">
+                            <li><i class="fa-solid fa-location-dot"></i>鶴岡メタボロームキャンパス</li>
+                            <li><i class="fa-solid fa-envelope"></i>tanaka at iab.keio.ac.jp</li>
+                            <li><i class="fa-solid fa-house"></i><a href="#">個人ページ</a></li>
+                        </ul>
+                        <p class="likes">好き：サッカー、ラーメン、ゲーム</p>
+                    </div>
+                </div>
+                <div class="member-card">
+                    <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=200" alt="佐藤美咲" class="member-photo">
+                    <div class="member-info">
+                        <h4>佐藤 美咲</h4>
+                        <p class="name-en">SATO Misaki</p>
+                        <span class="grade">D2</span>
+                        <ul class="detail-list">
+                            <li><i class="fa-solid fa-location-dot"></i>鶴岡メタボロームキャンパス</li>
+                            <li><i class="fa-solid fa-envelope"></i>sato at iab.keio.ac.jp</li>
+                        </ul>
+                        <p class="likes">好き：アート、抹茶、旅行</p>
+                    </div>
+                </div>
+                <div class="member-card">
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200" alt="伊藤翔" class="member-photo">
+                    <div class="member-info">
+                        <h4>伊藤 翔</h4>
+                        <p class="name-en">ITO Sho</p>
+                        <span class="grade">D1</span>
+                        <ul class="detail-list">
+                            <li><i class="fa-solid fa-location-dot"></i>SFC</li>
+                            <li><i class="fa-solid fa-envelope"></i>ito at sfc.keio.ac.jp</li>
+                        </ul>
+                        <p class="likes">好き：ランニング、写真、クラフトビール</p>
+                    </div>
+                </div>
+                <div class="member-card">
+                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=200" alt="高橋愛" class="member-photo">
+                    <div class="member-info">
+                        <h4>高橋 愛</h4>
+                        <p class="name-en">TAKAHASHI Ai</p>
+                        <span class="grade">M2</span>
+                        <ul class="detail-list">
+                            <li><i class="fa-solid fa-location-dot"></i>鶴岡メタボロームキャンパス</li>
+                        </ul>
+                        <p class="likes">好き：カラオケ、スイーツ、犬</p>
+                    </div>
+                </div>
+                <div class="member-card">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200" alt="渡辺拓也" class="member-photo">
+                    <div class="member-info">
+                        <h4>渡辺 拓也</h4>
+                        <p class="name-en">WATANABE Takuya</p>
+                        <span class="grade">M2</span>
+                        <ul class="detail-list">
+                            <li><i class="fa-solid fa-location-dot"></i>SFC</li>
+                        </ul>
+                        <p class="likes">好き：釣り、日本酒、アニメ</p>
+                    </div>
+                </div>
+                <div class="member-card">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200" alt="中村真由" class="member-photo">
+                    <div class="member-info">
+                        <h4>中村 真由</h4>
+                        <p class="name-en">NAKAMURA Mayu</p>
+                        <span class="grade">M1</span>
+                        <ul class="detail-list">
+                            <li><i class="fa-solid fa-location-dot"></i>SFC</li>
+                            <li><i class="fa-solid fa-envelope"></i>nakamura at sfc.keio.ac.jp</li>
+                        </ul>
+                        <p class="likes">好き：ヨガ、お花見、カフェ巡り</p>
+                    </div>
+                </div>
+                <div class="member-card">
+                    <img src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?w=200" alt="木村隼人" class="member-photo">
+                    <div class="member-info">
+                        <h4>木村 隼人</h4>
+                        <p class="name-en">KIMURA Hayato</p>
+                        <span class="grade">B4</span>
+                        <ul class="detail-list">
+                            <li><i class="fa-solid fa-location-dot"></i>SFC</li>
+                        </ul>
+                        <p class="likes">好き：テニス、音楽フェス、ピザ</p>
+                    </div>
+                </div>
+                <div class="member-card">
+                    <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=200" alt="小林さくら" class="member-photo">
+                    <div class="member-info">
+                        <h4>小林 さくら</h4>
+                        <p class="name-en">KOBAYASHI Sakura</p>
+                        <span class="grade">B4</span>
+                        <ul class="detail-list">
+                            <li><i class="fa-solid fa-location-dot"></i>SFC</li>
+                        </ul>
+                        <p class="likes">好き：ディズニー、お菓子作り、ダンス</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <strong>福田真嗣研究室 / Fukuda Laboratory</strong><br>
+                〒997-0052 山形県鶴岡市覚岸寺字水上246-2<br>
+                慶應義塾大学先端生命科学研究所
+            </div>
+            <div class="footer-contact">
+                E-mail: fukuda-lab[at]iab.keio.ac.jp<br>
+                ※[at]を@に変換してください<br>
+                <a href="contact.html">[お問い合わせ]</a>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2024 Fukuda Laboratory, Keio University. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>

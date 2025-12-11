@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fukuda Laboratory | 福田真嗣研究室</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans JP', 'Roboto', sans-serif;
+            color: #333;
+            line-height: 1.8;
+            background: #fff;
+            font-size: 16px;
+        }
+        
+        a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Header */
+        header {
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .header-top {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-area a {
+            display: block;
+        }
+        
+        .logo-area img {
+            height: 60px;
+            width: auto;
+        }
+        
+        .affiliation {
+            text-align: right;
+            font-size: 0.8rem;
+            color: #666;
+        }
+        
+        .affiliation a {
+            color: #666;
+        }
+        
+        .affiliation a:hover {
+            color: #0066cc;
+        }
+        
+        /* Navigation */
+        nav {
+            background: #f5f5f5;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        nav ul {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 30px;
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        nav li {
+            position: relative;
+        }
+        
+        nav a {
+            display: block;
+            padding: 14px 24px;
+            color: #333;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+        
+        nav a:hover {
+            background: #e8e8e8;
+            text-decoration: none;
+        }
+        
+        nav a.active {
+            background: #0066cc;
+            color: #fff;
+        }
+        
+        /* Main Content */
+        .main-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 30px;
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            gap: 40px;
+        }
+        
+        .content {
+            min-width: 0;
+        }
+        
+        /* Slideshow */
+        .slideshow {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+        
+        .slideshow img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+        
+        .slideshow img.active {
+            opacity: 1;
+        }
+        
+        .slideshow-dots {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
+        
+        .slideshow-dots span {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .slideshow-dots span.active {
+            background: #fff;
+        }
+        
+        /* Section */
+        .section {
+            margin-bottom: 35px;
+        }
+        
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #0066cc;
+            margin-bottom: 15px;
+            padding-left: 10px;
+            border-left: 4px solid #0066cc;
+        }
+        
+        .section-text {
+            font-size: 0.95rem;
+            color: #555;
+            text-align: justify;
+        }
+        
+        /* News */
+        .news-list {
+            list-style: none;
+        }
+        
+        .news-item {
+            padding: 12px 0;
+            border-bottom: 1px dotted #ddd;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .news-item:last-child {
+            border-bottom: none;
+        }
+        
+        .news-date {
+            color: #888;
+            white-space: nowrap;
+            min-width: 90px;
+        }
+        
+        .news-tag {
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 3px;
+            color: #fff;
+            white-space: nowrap;
+        }
+        
+        .news-tag.paper { background: #e74c3c; }
+        .news-tag.award { background: #f39c12; }
+        .news-tag.event { background: #3498db; }
+        .news-tag.media { background: #9b59b6; }
+        
+        .news-content {
+            flex: 1;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            font-size: 0.9rem;
+        }
+        
+        .sidebar-section {
+            margin-bottom: 30px;
+        }
+        
+        .sidebar-title {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #333;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #0066cc;
+            margin-bottom: 15px;
+        }
+        
+        .sidebar-links {
+            list-style: none;
+        }
+        
+        .sidebar-links li {
+            padding: 8px 0;
+            border-bottom: 1px dotted #ddd;
+        }
+        
+        .sidebar-links li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Footer */
+        footer {
+            background: #f5f5f5;
+            border-top: 1px solid #ddd;
+            padding: 30px;
+            margin-top: 40px;
+        }
+        
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .footer-info {
+            font-size: 0.85rem;
+            color: #666;
+            line-height: 1.8;
+        }
+        
+        .footer-info strong {
+            color: #333;
+        }
+        
+        .footer-contact {
+            text-align: right;
+            font-size: 0.85rem;
+            color: #666;
+        }
+        
+        .copyright {
+            max-width: 1100px;
+            margin: 20px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #999;
+        }
+        
+        /* Responsive - Tablet */
+        @media (max-width: 900px) {
+            .header-top {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+                padding: 15px 20px;
+            }
+            
+            .affiliation {
+                text-align: center;
+            }
+            
+            nav ul {
+                justify-content: center;
+                padding: 0 10px;
+            }
+            
+            nav a {
+                padding: 12px 16px;
+                font-size: 0.85rem;
+            }
+            
+            .main-container {
+                grid-template-columns: 1fr;
+                padding: 20px;
+                gap: 30px;
+            }
+            
+            .sidebar {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .footer-contact {
+                text-align: left;
+            }
+        }
+        
+        /* Responsive - Mobile */
+        @media (max-width: 600px) {
+            body {
+                font-size: 14px;
+            }
+            
+            .logo-area img {
+                height: 45px;
+            }
+            
+            nav ul {
+                justify-content: flex-start;
+                overflow-x: auto;
+                flex-wrap: nowrap;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            nav a {
+                padding: 10px 14px;
+                font-size: 0.8rem;
+                white-space: nowrap;
+            }
+            
+            .main-container {
+                padding: 15px;
+            }
+            
+            .news-item {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .news-date {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .sidebar {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                padding: 0 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-top">
+            <div class="logo-area">
+                <a href="index.html">
+                    <img src="https://raw.githubusercontent.com/browngem-org/photo/main/foundate/fukudalab_icon.jpg" alt="Fukuda Laboratory 福田真嗣研究室">
+                </a>
+            </div>
+            <div class="affiliation">
+                <a href="https://www.keio.ac.jp/" target="_blank">慶應義塾大学</a><br>
+                <a href="https://www.iab.keio.ac.jp/" target="_blank">先端生命科学研究所</a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="publications.html">Publications</a></li>
+            <li><a href="members.html">Members</a></li>
+            <li><a href="laboratory.html">Our Laboratory</a></li>
+            <li><a href="access.html">Access</a></li>
+            <li><a href="contact.html">Contact us</a></li>
+        </ul>
+    </nav>
+    
+    <!-- Main Content -->
+    <div class="main-container">
+        <div class="content">
+            <!-- Slideshow -->
+            <div class="slideshow">
+                <img src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=800" alt="研究室風景1" class="active">
+                <img src="https://images.unsplash.com/photo-1576086213369-97a306d36557?w=800" alt="研究室風景2">
+                <img src="https://images.unsplash.com/photo-1579154204601-01588f351e67?w=800" alt="研究室風景3">
+                <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=800" alt="研究室風景4">
+                <div class="slideshow-dots">
+                    <span class="active"></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            
+            <!-- About -->
+            <section class="section">
+                <h2 class="section-title">研究概要 / About Our Research</h2>
+                <p class="section-text">
+                    福田真嗣研究室では、腸内細菌叢（腸内フローラ）と宿主の相互作用について研究しています。
+                    メタボローム解析を中心とした最先端の解析技術を駆使し、腸内細菌が産生する代謝物質が
+                    ヒトの健康や疾患にどのように関わっているかを明らかにすることを目指しています。
+                    私たちの研究成果は、予防医学や個別化医療の発展に貢献することを目標としています。
+                </p>
+            </section>
+            
+            <!-- News -->
+            <section class="section">
+                <h2 class="section-title">お知らせ / News</h2>
+                <ul class="news-list">
+                    <li class="news-item">
+                        <span class="news-date">2024.12.01</span>
+                        <span class="news-tag paper">Paper</span>
+                        <span class="news-content">Nature誌に論文が掲載されました。<a href="#">[詳細]</a></span>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">2024.11.15</span>
+                        <span class="news-tag award">Award</span>
+                        <span class="news-content">田中健太さんが学会優秀発表賞を受賞しました。</span>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">2024.11.01</span>
+                        <span class="news-tag event">Event</span>
+                        <span class="news-content">国際シンポジウムで招待講演を行いました。</span>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">2024.10.20</span>
+                        <span class="news-tag media">Media</span>
+                        <span class="news-content">NHKの科学番組で研究が紹介されました。</span>
+                    </li>
+                    <li class="news-item">
+                        <span class="news-date">2024.10.01</span>
+                        <span class="news-tag event">Event</span>
+                        <span class="news-content">新メンバーが加わりました。</span>
+                    </li>
+                </ul>
+            </section>
+        </div>
+        
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Links</h3>
+                <ul class="sidebar-links">
+                    <li><a href="https://metagen.co.jp/" target="_blank">株式会社メタジェン</a></li>
+                    <li><a href="https://www.iab.keio.ac.jp/" target="_blank">慶應義塾大学 先端生命科学研究所</a></li>
+                    <li><a href="https://www.keio.ac.jp/" target="_blank">慶應義塾大学</a></li>
+                    <li><a href="https://www.jst.go.jp/" target="_blank">科学技術振興機構 (JST)</a></li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Twitter</h3>
+                <p style="color: #666; font-size: 0.85rem;">@fukuda_lab</p>
+            </div>
+        </aside>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <strong>福田真嗣研究室 / Fukuda Laboratory</strong><br>
+                〒997-0052 山形県鶴岡市覚岸寺字水上246-2<br>
+                慶應義塾大学先端生命科学研究所
+            </div>
+            <div class="footer-contact">
+                E-mail: fukuda-lab[at]iab.keio.ac.jp<br>
+                ※[at]を@に変換してください<br>
+                <a href="contact.html">[お問い合わせ]</a>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2024 Fukuda Laboratory, Keio University. All rights reserved.
+        </div>
+    </footer>
+    
+    <script>
+        // Slideshow
+        const slides = document.querySelectorAll('.slideshow img');
+        const dots = document.querySelectorAll('.slideshow-dots span');
+        let current = 0;
+        
+        function showSlide(n) {
+            slides[current].classList.remove('active');
+            dots[current].classList.remove('active');
+            current = (n + slides.length) % slides.length;
+            slides[current].classList.add('active');
+            dots[current].classList.add('active');
+        }
+        
+        dots.forEach((dot, i) => {
+            dot.addEventListener('click', () => showSlide(i));
+        });
+        
+        setInterval(() => showSlide(current + 1), 4000);
+    </script>
+</body>
+</html>
