@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News | Fukuda Group</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Noto Sans JP', 'Roboto', sans-serif; color: #333; line-height: 1.8; background: #fff; font-size: 16px; }
+        a { color: #0066cc; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        header { border-bottom: 1px solid #ddd; }
+        .header-top { max-width: 1100px; margin: 0 auto; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center; }
+        .logo-area a { display: block; }
+        .logo-area img { height: 60px; width: auto; }
+        .affiliation { text-align: right; font-size: 0.8rem; color: #666; }
+        .affiliation a { color: #666; }
+        .affiliation a:hover { color: #0066cc; }
+        nav { background: #f5f5f5; border-bottom: 1px solid #ddd; }
+        nav ul { max-width: 1100px; margin: 0 auto; padding: 0 30px; list-style: none; display: flex; flex-wrap: wrap; }
+        nav a { display: block; padding: 14px 24px; color: #333; font-size: 0.9rem; font-weight: 500; transition: background 0.2s; }
+        nav a:hover { background: #e8e8e8; text-decoration: none; }
+        nav a.active { background: #0066cc; color: #fff; }
+        .main-container { max-width: 1100px; margin: 0 auto; padding: 30px; }
+        .page-title { font-size: 1.5rem; font-weight: 500; color: #333; padding-bottom: 15px; border-bottom: 3px solid #0066cc; margin-bottom: 30px; }
+        
+        /* Filter Tabs */
+        .filter-tabs { display: flex; gap: 8px; margin-bottom: 30px; flex-wrap: wrap; }
+        .filter-tab { padding: 8px 16px; font-size: 0.85rem; border: 1px solid #ddd; border-radius: 20px; background: #fff; cursor: pointer; transition: all 0.2s; }
+        .filter-tab:hover { border-color: #0066cc; color: #0066cc; }
+        .filter-tab.active { background: #0066cc; color: #fff; border-color: #0066cc; }
+        
+        /* Year Section */
+        .year-section { margin-bottom: 40px; }
+        .year-title { font-size: 1.1rem; font-weight: 500; color: #0066cc; margin-bottom: 15px; padding-left: 10px; border-left: 4px solid #0066cc; }
+        
+        /* News List */
+        .news-list { list-style: none; }
+        .news-item { padding: 16px 0; border-bottom: 1px solid #eee; display: flex; align-items: flex-start; gap: 15px; }
+        .news-item:last-child { border-bottom: none; }
+        .news-date { color: #888; font-size: 0.85rem; min-width: 100px; }
+        .news-tag { font-size: 0.7rem; padding: 3px 10px; border-radius: 3px; color: #fff; white-space: nowrap; }
+        .news-tag.paper { background: #e74c3c; }
+        .news-tag.award { background: #f39c12; }
+        .news-tag.event { background: #3498db; }
+        .news-tag.media { background: #9b59b6; }
+        .news-tag.info { background: #27ae60; }
+        .news-content { flex: 1; font-size: 0.95rem; }
+        
+        footer { background: #f5f5f5; border-top: 1px solid #ddd; padding: 30px; margin-top: 40px; }
+        .footer-content { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 20px; }
+        .footer-info { font-size: 0.85rem; color: #666; line-height: 1.8; }
+        .footer-info strong { color: #333; }
+        .footer-contact { text-align: right; font-size: 0.85rem; color: #666; }
+        .copyright { max-width: 1100px; margin: 20px auto 0; padding-top: 20px; border-top: 1px solid #ddd; text-align: center; font-size: 0.8rem; color: #999; }
+        
+        @media (max-width: 900px) {
+            .header-top { flex-direction: column; text-align: center; gap: 15px; padding: 15px 20px; }
+            .affiliation { text-align: center; }
+            nav ul { justify-content: center; padding: 0 10px; }
+            nav a { padding: 12px 16px; font-size: 0.85rem; }
+            .main-container { padding: 20px; }
+            .footer-content { flex-direction: column; }
+            .footer-contact { text-align: left; }
+        }
+        
+        @media (max-width: 600px) {
+            body { font-size: 14px; }
+            .logo-area img { height: 45px; }
+            nav ul { justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; }
+            nav a { padding: 10px 14px; font-size: 0.8rem; white-space: nowrap; }
+            .main-container { padding: 15px; }
+            .news-item { flex-direction: column; gap: 8px; }
+            .news-date { display: flex; align-items: center; gap: 10px; min-width: auto; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <div class="logo-area">
+                <a href="index.html">
+                    <img src="https://raw.githubusercontent.com/browngem-org/photo/main/foundate/fukudalab_icon.jpg" alt="Fukuda Laboratory">
+                </a>
+            </div>
+            <div class="affiliation">
+                <a href="https://www.keio.ac.jp/" target="_blank">慶應義塾大学</a><br>
+                <a href="https://www.iab.keio.ac.jp/" target="_blank">先端生命科学研究所</a>
+            </div>
+        </div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="publications.html">Publications</a></li>
+            <li><a href="members.html">Members</a></li>
+            <li><a href="laboratory.html">Our Laboratory</a></li>
+            <li><a href="news.html" class="active">News</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="access.html">Access</a></li>
+            <li><a href="contact.html">Contact us</a></li>
+        </ul>
+    </nav>
+    
+    <div class="main-container">
+        <h1 class="page-title">お知らせ / News</h1>
+        
+        <div class="filter-tabs">
+            <button class="filter-tab active" data-filter="all">All</button>
+            <button class="filter-tab" data-filter="paper">Paper</button>
+            <button class="filter-tab" data-filter="award">Award</button>
+            <button class="filter-tab" data-filter="event">Event</button>
+            <button class="filter-tab" data-filter="media">Media</button>
+            <button class="filter-tab" data-filter="info">Info</button>
+        </div>
+        
+        <div class="year-section">
+            <h2 class="year-title">2025</h2>
+            <ul class="news-list">
+                <li class="news-item" data-category="event">
+                    <span class="news-date">2025.12.12</span>
+                    <span class="news-tag event">Event</span>
+                    <span class="news-content">韓国のHEM Farmaと共同で韓国研修を行いました。</span>
+                </li>
+                <li class="news-item" data-category="paper">
+                    <span class="news-date">2025.11.17</span>
+                    <span class="news-tag paper">Paper</span>
+                    <span class="news-content">石井さんの食事と腸内環境に関する論文がGut Microbes Reports誌に掲載されました。<a href="https://www.tandfonline.com/doi/full/10.1080/29933935.2025.2574930#abstract">[詳細]</a></span>
+                </li>
+                <li class="news-item" data-category="media">
+                    <span class="news-date">2025.10.05</span>
+                    <span class="news-tag media">Media</span>
+                    <span class="news-content">NHK「サイエンスZERO」にて福田教授の研究が紹介されました。</span>
+                </li>
+                <li class="news-item" data-category="award">
+                    <span class="news-date">2025.09.20</span>
+                    <span class="news-tag award">Award</span>
+                    <span class="news-content">池田さんが日本腸内細菌学会にて優秀発表賞を受賞しました。</span>
+                </li>
+                <li class="news-item" data-category="event">
+                    <span class="news-date">2025.04.01</span>
+                    <span class="news-tag event">Event</span>
+                    <span class="news-content">新年度がスタートしました。新メンバーを迎えました。</span>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="year-section">
+            <h2 class="year-title">2024</h2>
+            <ul class="news-list">
+                <li class="news-item" data-category="paper">
+                    <span class="news-date">2024.12.15</span>
+                    <span class="news-tag paper">Paper</span>
+                    <span class="news-content">腸内細菌叢と免疫応答に関する総説がNature Reviews Microbiologyに掲載されました。</span>
+                </li>
+                <li class="news-item" data-category="award">
+                    <span class="news-date">2024.11.10</span>
+                    <span class="news-tag award">Award</span>
+                    <span class="news-content">福田教授が文部科学大臣表彰を受賞しました。</span>
+                </li>
+                <li class="news-item" data-category="event">
+                    <span class="news-date">2024.09.15</span>
+                    <span class="news-tag event">Event</span>
+                    <span class="news-content">研究室旅行を行いました。</span>
+                </li>
+                <li class="news-item" data-category="info">
+                    <span class="news-date">2024.06.01</span>
+                    <span class="news-tag info">Info</span>
+                    <span class="news-content">研究室ウェブサイトをリニューアルしました。</span>
+                </li>
+                <li class="news-item" data-category="paper">
+                    <span class="news-date">2024.03.22</span>
+                    <span class="news-tag paper">Paper</span>
+                    <span class="news-content">短鎖脂肪酸の代謝経路に関する論文がCell Host & Microbeに掲載されました。</span>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="year-section">
+            <h2 class="year-title">2023</h2>
+            <ul class="news-list">
+                <li class="news-item" data-category="paper">
+                    <span class="news-date">2023.08.10</span>
+                    <span class="news-tag paper">Paper</span>
+                    <span class="news-content">メタボローム解析手法に関する論文がAnalytical Chemistryに掲載されました。</span>
+                </li>
+                <li class="news-item" data-category="event">
+                    <span class="news-date">2023.04.05</span>
+                    <span class="news-tag event">Event</span>
+                    <span class="news-content">新入生歓迎会を開催しました。</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <strong>福田真嗣研究室 / Fukuda Laboratory</strong><br>
+                〒997-0052 山形県鶴岡市覚岸寺字水上246-2<br>
+                慶應義塾大学先端生命科学研究所
+            </div>
+            <div class="footer-contact">
+                E-mail: fukuda-lab[at]iab.keio.ac.jp<br>
+                ※[at]を@に変換してください<br>
+                <a href="contact.html">[お問い合わせ]</a>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2025 Fukuda Laboratory, Keio University. All rights reserved.
+        </div>
+    </footer>
+    
+    <script>
+        const filterTabs = document.querySelectorAll('.filter-tab');
+        const newsItems = document.querySelectorAll('.news-item');
+        
+        filterTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                filterTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                const filter = tab.dataset.filter;
+                
+                newsItems.forEach(item => {
+                    if (filter === 'all' || item.dataset.category === filter) {
+                        item.style.display = 'flex';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
