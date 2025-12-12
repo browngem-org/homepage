@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Noto Sans JP', 'Roboto', sans-serif; color: #333; line-height: 1.8; background: #fff; font-size: 16px; }
@@ -26,30 +27,42 @@
         nav a.active { background: #0066cc; color: #fff; }
         .main-container { max-width: 1100px; margin: 0 auto; padding: 30px; }
         .page-title { font-size: 1.5rem; font-weight: 500; color: #333; padding-bottom: 15px; border-bottom: 3px solid #0066cc; margin-bottom: 30px; }
-        .group-photo { width: 100%; border-radius: 5px; overflow: hidden; margin-bottom: 10px; }
+        .group-photo { width: 100%; border-radius: 8px; overflow: hidden; margin-bottom: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
         .group-photo img { width: 100%; height: auto; display: block; }
         .section { margin-bottom: 50px; }
         .section-title { font-size: 1.1rem; font-weight: 500; color: #0066cc; margin-bottom: 20px; padding-left: 10px; border-left: 4px solid #0066cc; }
         .section-description { font-size: 0.95rem; color: #555; margin-bottom: 20px; }
+        
         .photo-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; }
-        .photo-item { position: relative; overflow: hidden; border-radius: 5px; aspect-ratio: 4/3; }
-        .photo-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
-        .photo-item:hover img { transform: scale(1.05); }
-        .photo-item .caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 10px; background: rgba(0, 0, 0, 0.6); color: #fff; font-size: 0.85rem; text-align: center; }
-        
-        /* アルバムイベントセクション */
-        .activity-event { margin-bottom: 35px; padding: 20px; background: #fafafa; border-radius: 8px; border-left: 4px solid #0066cc; }
-        .event-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; flex-wrap: wrap; }
-        .event-title { font-size: 1rem; font-weight: 500; color: #333; }
-        .event-date { font-size: 0.8rem; color: #888; background: #eee; padding: 3px 10px; border-radius: 15px; }
-        .event-description { font-size: 0.85rem; color: #666; margin-bottom: 15px; }
-        .event-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; }
-        .event-gallery .photo-item { aspect-ratio: 4/3; }
-        .event-gallery .photo-item img { border-radius: 5px; }
-        
+        .photo-item { position: relative; overflow: hidden; border-radius: 8px; aspect-ratio: 4/3; }
+        .photo-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+        .photo-item:hover img { transform: scale(1.08); }
+        .photo-item .caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 12px; background: linear-gradient(transparent, rgba(0,0,0,0.7)); color: #fff; font-size: 0.85rem; text-align: center; }
+
+        .activities-container { display: flex; flex-direction: column; gap: 40px; }
+        .event-block { position: relative; }
+        .event-header-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .event-info { display: flex; align-items: baseline; gap: 12px; }
+        .event-title { font-size: 1.15rem; font-weight: 600; color: #222; }
+        .event-date { font-size: 0.75rem; color: #999; font-weight: 400; }
+        .event-desc { font-size: 0.85rem; color: #666; margin-bottom: 12px; max-width: 600px; }
+        .carousel-nav { display: flex; gap: 8px; }
+        .carousel-btn { width: 36px; height: 36px; border-radius: 50%; border: 1px solid #ddd; background: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; color: #666; }
+        .carousel-btn:hover { background: #0066cc; border-color: #0066cc; color: #fff; }
+        .carousel-wrapper { position: relative; overflow: hidden; }
+        .carousel-track { display: flex; gap: 16px; transition: transform 0.4s ease; cursor: grab; }
+        .carousel-track:active { cursor: grabbing; }
+        .carousel-slide { flex: 0 0 auto; width: 280px; height: 200px; border-radius: 12px; overflow: hidden; position: relative; }
+        .carousel-slide img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+        .carousel-slide:hover img { transform: scale(1.05); }
+        .carousel-progress { height: 2px; background: #eee; border-radius: 1px; margin-top: 12px; overflow: hidden; }
+        .carousel-progress-bar { height: 100%; background: #0066cc; border-radius: 1px; transition: width 0.3s ease; }
+
         .equipment-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 15px; }
-        .equipment-item { padding: 15px 20px; background: #f9f9f9; border-radius: 5px; font-size: 0.9rem; }
+        .equipment-item { padding: 15px 20px; background: #f9f9f9; border-radius: 8px; font-size: 0.9rem; transition: box-shadow 0.2s; }
+        .equipment-item:hover { box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
         .equipment-item strong { color: #0066cc; }
+        
         footer { background: #f5f5f5; border-top: 1px solid #ddd; padding: 30px; margin-top: 40px; }
         .footer-content { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 20px; }
         .footer-info { font-size: 0.85rem; color: #666; line-height: 1.8; }
@@ -64,7 +77,7 @@
             nav a { padding: 12px 16px; font-size: 0.85rem; }
             .main-container { padding: 20px; }
             .photo-gallery { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
-            .event-gallery { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+            .carousel-slide { width: 240px; height: 170px; }
             .equipment-list { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); }
             .footer-content { flex-direction: column; }
             .footer-contact { text-align: left; }
@@ -78,8 +91,9 @@
             .main-container { padding: 15px; }
             .photo-gallery { grid-template-columns: repeat(2, 1fr); gap: 10px; }
             .photo-item .caption { font-size: 0.75rem; padding: 8px; }
-            .activity-event { padding: 15px; }
-            .event-gallery { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+            .event-header-row { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .carousel-nav { position: absolute; right: 0; top: 0; }
+            .carousel-slide { width: 200px; height: 140px; }
             .equipment-list { grid-template-columns: 1fr; }
             .footer-content { padding: 0 10px; }
         }
@@ -114,7 +128,6 @@
     <div class="main-container">
         <h1 class="page-title">Our Laboratory</h1>
         
-        <!-- Lab Group Photo -->
         <section class="section">
             <div class="group-photo">
                 <img src="https://raw.githubusercontent.com/browngem-org/photo/14cba80a53595be1f1e1b5dc7afb2e92706666bc/laboratory/LaboKorea.jpg" alt="福田研究室 集合写真">
@@ -156,74 +169,104 @@
             <h2 class="section-title">課外活動 / Activities</h2>
             <p class="section-description">いい研究をするためには、ときに遊ぶことも大事です。</p>
             
-            <!-- 韓国研修 2024 -->
-            <div class="activity-event">
-                <div class="event-header">
-                    <h3 class="event-title">韓国企業との合同研修</h3>
-                    <span class="event-date">2024年12月</span>
+            <div class="activities-container">
+                <div class="event-block" data-event="korea">
+                    <div class="event-header-row">
+                        <div>
+                            <div class="event-info">
+                                <h3 class="event-title">韓国企業との合同研修</h3>
+                                <span class="event-date">2024.12</span>
+                            </div>
+                            <p class="event-desc">韓国のバイオテック企業との交流プログラム。研究発表や意見交換を通じて国際的な視野を広げました。</p>
+                        </div>
+                        <div class="carousel-nav">
+                            <button class="carousel-btn prev"><i class="fa-solid fa-chevron-left"></i></button>
+                            <button class="carousel-btn next"><i class="fa-solid fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                    <div class="carousel-wrapper">
+                        <div class="carousel-track">
+                            <div class="carousel-slide"><img src="https://raw.githubusercontent.com/browngem-org/photo/refs/heads/main/activities/tour.HEIC" alt="韓国研修"></div>
+                            <div class="carousel-slide"><img src="https://raw.githubusercontent.com/browngem-org/photo/refs/heads/main/activities/huan.HEIC" alt="韓国研修"></div>
+                            <div class="carousel-slide"><img src="https://raw.githubusercontent.com/browngem-org/photo/14cba80a53595be1f1e1b5dc7afb2e92706666bc/laboratory/LaboKorea.jpg" alt="韓国研修"></div>
+                            <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=400" alt="韓国研修"></div>
+                            <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400" alt="韓国研修"></div>
+                        </div>
+                    </div>
+                    <div class="carousel-progress"><div class="carousel-progress-bar"></div></div>
                 </div>
-                <p class="event-description">韓国のバイオテック企業との交流プログラムに参加しました。研究発表や意見交換を通じて、国際的な視野を広げる貴重な機会となりました。</p>
-                <div class="event-gallery">
-                    <div class="photo-item">
-                        <img src="https://raw.githubusercontent.com/browngem-org/photo/refs/heads/main/activities/tour.HEIC" alt="韓国研修1">
+                
+                <div class="event-block" data-event="welcome">
+                    <div class="event-header-row">
+                        <div>
+                            <div class="event-info">
+                                <h3 class="event-title">新入生歓迎会</h3>
+                                <span class="event-date">2024.04</span>
+                            </div>
+                            <p class="event-desc">新しく研究室に加わったメンバーを迎えて、歓迎会を開催しました。</p>
+                        </div>
+                        <div class="carousel-nav">
+                            <button class="carousel-btn prev"><i class="fa-solid fa-chevron-left"></i></button>
+                            <button class="carousel-btn next"><i class="fa-solid fa-chevron-right"></i></button>
+                        </div>
                     </div>
-                    <div class="photo-item">
-                        <img src="https://raw.githubusercontent.com/browngem-org/photo/refs/heads/main/activities/huan.HEIC" alt="韓国研修2">
+                    <div class="carousel-wrapper">
+                        <div class="carousel-track">
+                            <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=400" alt="歓迎会"></div>
+                            <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400" alt="歓迎会"></div>
+                            <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=400" alt="歓迎会"></div>
+                        </div>
                     </div>
-                    <div class="photo-item">
-                        <img src="https://raw.githubusercontent.com/browngem-org/photo/14cba80a53595be1f1e1b5dc7afb2e92706666bc/laboratory/LaboKorea.jpg" alt="韓国研修3">
-                    </div>
+                    <div class="carousel-progress"><div class="carousel-progress-bar"></div></div>
                 </div>
-            </div>
-            
-            <!-- 新入生歓迎会 -->
-            <div class="activity-event">
-                <div class="event-header">
-                    <h3 class="event-title">新入生歓迎会</h3>
-                    <span class="event-date">2024年4月</span>
+                
+                <div class="event-block" data-event="trip">
+                    <div class="event-header-row">
+                        <div>
+                            <div class="event-info">
+                                <h3 class="event-title">研究室旅行</h3>
+                                <span class="event-date">2023.09</span>
+                            </div>
+                            <p class="event-desc">年に一度の研究室旅行。リフレッシュしながらメンバー同士の親睦を深めました。</p>
+                        </div>
+                        <div class="carousel-nav">
+                            <button class="carousel-btn prev"><i class="fa-solid fa-chevron-left"></i></button>
+                            <button class="carousel-btn next"><i class="fa-solid fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                    <div class="carousel-wrapper">
+                        <div class="carousel-track">
+                            <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=400" alt="研究室旅行"></div>
+                            <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=400" alt="研究室旅行"></div>
+                            <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=400" alt="研究室旅行"></div>
+                            <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400" alt="研究室旅行"></div>
+                        </div>
+                    </div>
+                    <div class="carousel-progress"><div class="carousel-progress-bar"></div></div>
                 </div>
-                <p class="event-description">新しく研究室に加わったメンバーを迎えて、歓迎会を開催しました。</p>
-                <div class="event-gallery">
-                    <div class="photo-item">
-                        <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=400" alt="歓迎会1">
+                
+                <div class="event-block" data-event="party">
+                    <div class="event-header-row">
+                        <div>
+                            <div class="event-info">
+                                <h3 class="event-title">忘年会</h3>
+                                <span class="event-date">2023.12</span>
+                            </div>
+                            <p class="event-desc">一年の締めくくりとして、研究室メンバー全員で忘年会を行いました。</p>
+                        </div>
+                        <div class="carousel-nav">
+                            <button class="carousel-btn prev"><i class="fa-solid fa-chevron-left"></i></button>
+                            <button class="carousel-btn next"><i class="fa-solid fa-chevron-right"></i></button>
+                        </div>
                     </div>
-                    <div class="photo-item">
-                        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400" alt="歓迎会2">
+                    <div class="carousel-wrapper">
+                        <div class="carousel-track">
+                            <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=400" alt="忘年会"></div>
+                            <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=400" alt="忘年会"></div>
+                            <div class="carousel-slide"><img src="https://images.unsplash.com/photo-1513151233558-d860c5398176?w=400" alt="忘年会"></div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            
-            <!-- 研究室旅行 -->
-            <div class="activity-event">
-                <div class="event-header">
-                    <h3 class="event-title">研究室旅行</h3>
-                    <span class="event-date">2023年9月</span>
-                </div>
-                <p class="event-description">年に一度の研究室旅行。リフレッシュしながらメンバー同士の親睦を深めました。</p>
-                <div class="event-gallery">
-                    <div class="photo-item">
-                        <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=400" alt="研究室旅行1">
-                    </div>
-                    <div class="photo-item">
-                        <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=400" alt="研究室旅行2">
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 忘年会 -->
-            <div class="activity-event">
-                <div class="event-header">
-                    <h3 class="event-title">忘年会</h3>
-                    <span class="event-date">2023年12月</span>
-                </div>
-                <p class="event-description">一年の締めくくりとして、研究室メンバー全員で忘年会を行いました。</p>
-                <div class="event-gallery">
-                    <div class="photo-item">
-                        <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=400" alt="忘年会1">
-                    </div>
-                    <div class="photo-item">
-                        <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=400" alt="忘年会2">
-                    </div>
+                    <div class="carousel-progress"><div class="carousel-progress-bar"></div></div>
                 </div>
             </div>
         </section>
@@ -258,5 +301,74 @@
             &copy; 2025 Fukuda Laboratory, Keio University. All rights reserved.
         </div>
     </footer>
+    
+    <script>
+        document.querySelectorAll('.event-block').forEach(block => {
+            const track = block.querySelector('.carousel-track');
+            const slides = block.querySelectorAll('.carousel-slide');
+            const prevBtn = block.querySelector('.prev');
+            const nextBtn = block.querySelector('.next');
+            const progressBar = block.querySelector('.carousel-progress-bar');
+            
+            let currentIndex = 0;
+            const slideWidth = 296;
+            
+            function getMaxIndex() {
+                const wrapperWidth = block.querySelector('.carousel-wrapper').offsetWidth;
+                const visibleSlides = Math.floor(wrapperWidth / slideWidth);
+                return Math.max(0, slides.length - visibleSlides);
+            }
+            
+            function updateCarousel() {
+                track.style.transform = 'translateX(-' + (currentIndex * slideWidth) + 'px)';
+                const maxIndex = getMaxIndex();
+                const progress = maxIndex > 0 ? ((currentIndex / maxIndex) * 100) : 100;
+                progressBar.style.width = Math.max(20, progress) + '%';
+            }
+            
+            prevBtn.addEventListener('click', function() {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateCarousel();
+                }
+            });
+            
+            nextBtn.addEventListener('click', function() {
+                if (currentIndex < getMaxIndex()) {
+                    currentIndex++;
+                    updateCarousel();
+                }
+            });
+            
+            let startX = 0;
+            let scrollLeft = 0;
+            
+            track.addEventListener('touchstart', function(e) {
+                startX = e.touches[0].pageX;
+                scrollLeft = currentIndex * slideWidth;
+            });
+            
+            track.addEventListener('touchmove', function(e) {
+                var x = e.touches[0].pageX;
+                var walk = startX - x;
+                track.style.transform = 'translateX(-' + (scrollLeft + walk) + 'px)';
+            });
+            
+            track.addEventListener('touchend', function(e) {
+                var x = e.changedTouches[0].pageX;
+                var walk = startX - x;
+                var maxIndex = getMaxIndex();
+                
+                if (walk > 50 && currentIndex < maxIndex) {
+                    currentIndex++;
+                } else if (walk < -50 && currentIndex > 0) {
+                    currentIndex--;
+                }
+                updateCarousel();
+            });
+            
+            updateCarousel();
+        });
+    </script>
 </body>
 </html>
