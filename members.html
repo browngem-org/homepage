@@ -7,456 +7,92 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
- <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Noto Sans JP', 'Roboto', sans-serif;
-            color: #333;
-            line-height: 1.8;
-            background: #fff;
-            font-size: 16px;
-        }
-        
-        a {
-            color: #0066cc;
-            text-decoration: none;
-        }
-        
-        a:hover {
-            text-decoration: underline;
-        }
-        
-        /* Header */
-        header {
-            border-bottom: 1px solid #ddd;
-        }
-        
-        .header-top {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 20px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo-area a {
-            display: block;
-        }
-        
-        .logo-area img {
-            height: 60px;
-            width: auto;
-        }
-        
-        .affiliation {
-            text-align: right;
-            font-size: 0.8rem;
-            color: #666;
-        }
-        
-        .affiliation a {
-            color: #666;
-        }
-        
-        .affiliation a:hover {
-            color: #0066cc;
-        }
-        
-        /* Navigation */
-        nav {
-            background: #f5f5f5;
-            border-bottom: 1px solid #ddd;
-        }
-        
-        nav ul {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 30px;
-            list-style: none;
-            display: flex;
-            flex-wrap: wrap;
-        }
-        
-        nav li {
-            position: relative;
-        }
-        
-        nav a {
-            display: block;
-            padding: 14px 24px;
-            color: #333;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: background 0.2s;
-        }
-        
-        nav a:hover {
-            background: #e8e8e8;
-            text-decoration: none;
-        }
-        
-        nav a.active {
-            background: #0066cc;
-            color: #fff;
-        }
-        
-        /* Main Content */
-        .main-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 30px;
-        }
-        
-        /* Page Title */
-        .page-title {
-            font-size: 1.5rem;
-            font-weight: 500;
-            color: #333;
-            padding-bottom: 15px;
-            border-bottom: 3px solid #0066cc;
-            margin-bottom: 30px;
-        }
-        
-        /* Member Category */
-        .member-category {
-            margin-bottom: 40px;
-        }
-        
-        .category-title {
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: #0066cc;
-            margin-bottom: 20px;
-            padding-left: 10px;
-            border-left: 4px solid #0066cc;
-        }
-        
-        /* Detail List - 共通スタイル */
-        .detail-list {
-            list-style: none;
-            font-size: 0.85rem;
-            color: #555;
-            margin: 10px 0;
-        }
-        
-        .detail-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: 6px;
-            padding: 2px 0;
-            line-height: 1.6;
-        }
-        
-        .detail-list li i {
-            color: #999;
-            font-size: 0.8rem;
-            width: 14px;
-            text-align: center;
-            flex-shrink: 0;
-            margin-top: 3px;
-        }
-        
-        .detail-list a {
-            color: #0066cc;
-        }
-        
-        /* Professor Card */
-        .professor-card {
-            display: grid;
-            grid-template-columns: 180px 1fr;
-            gap: 30px;
-            padding: 25px;
-            background: #f9f9f9;
-            border-radius: 5px;
-            margin-bottom: 20px;
-        }
-        
-        .professor-photo {
-            width: 180px;
-            height: 220px;
-            object-fit: cover;
-            border-radius: 3px;
-        }
-        
-        .professor-info h3 {
-            font-size: 1.3rem;
-            font-weight: 500;
-            margin-bottom: 5px;
-        }
-        
-        .professor-info .name-en {
-            font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 10px;
-        }
-        
-        .professor-info .title {
-            font-size: 0.9rem;
-            color: #333;
-            margin-bottom: 5px;
-        }
-        
-        .professor-info .affiliation-item {
-            font-size: 0.85rem;
-            color: #555;
-            margin-bottom: 3px;
-        }
-        
-        .professor-info .field {
-            font-size: 0.9rem;
-            color: #333;
-            margin: 12px 0 8px;
-        }
-        
-        .professor-info .likes {
-            font-size: 0.85rem;
-            color: #666;
-            margin-top: 10px;
-            padding-top: 10px;
-            border-top: 1px dotted #ddd;
-        }
-        
-        .professor-info .likes strong {
-            color: #333;
-        }
-        
-        /* Member Grid */
-        .member-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-            gap: 20px;
-        }
-        
-        .member-card {
-            display: grid;
-            grid-template-columns: 100px 1fr;
-            gap: 15px;
-            padding: 20px;
-            background: #f9f9f9;
-            border-radius: 5px;
-        }
-        
-        .member-photo {
-            width: 100px;
-            height: 120px;
-            object-fit: cover;
-            border-radius: 3px;
-        }
-        
-        .member-info h4 {
-            font-size: 1rem;
-            font-weight: 500;
-            margin-bottom: 3px;
-        }
-        
-        .member-info .name-en {
-            font-size: 0.8rem;
-            color: #666;
-            margin-bottom: 5px;
-        }
-        
-        .member-info .grade {
-            font-size: 0.75rem;
-            color: #fff;
-            background: #0066cc;
-            padding: 2px 8px;
-            border-radius: 3px;
-            display: inline-block;
-            margin-bottom: 5px;
-        }
-        
-        .member-info .detail-list {
-            font-size: 0.8rem;
-            margin: 8px 0;
-        }
-        
-        .member-info .detail-list li {
-            padding: 1px 0;
-        }
-        
-        .member-info .detail-list li i {
-            font-size: 0.75rem;
-            width: 12px;
-            margin-top: 2px;
-        }
-        
-        .member-info .likes {
-            font-size: 0.8rem;
-            color: #666;
-        }
-        
-        /* Footer */
-        footer {
-            background: #f5f5f5;
-            border-top: 1px solid #ddd;
-            padding: 30px;
-            margin-top: 40px;
-        }
-        
-        .footer-content {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        
-        .footer-info {
-            font-size: 0.85rem;
-            color: #666;
-            line-height: 1.8;
-        }
-        
-        .footer-info strong {
-            color: #333;
-        }
-        
-        .footer-contact {
-            text-align: right;
-            font-size: 0.85rem;
-            color: #666;
-        }
-        
-        .copyright {
-            max-width: 1100px;
-            margin: 20px auto 0;
-            padding-top: 20px;
-            border-top: 1px solid #ddd;
-            text-align: center;
-            font-size: 0.8rem;
-            color: #999;
-        }
-        
-        /* Responsive - Tablet */
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Noto Sans JP', 'Roboto', sans-serif; color: #333; line-height: 1.8; background: #fff; font-size: 16px; }
+        a { color: #0066cc; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        header { border-bottom: 1px solid #ddd; }
+        .header-top { max-width: 1100px; margin: 0 auto; padding: 20px 30px; display: flex; justify-content: space-between; align-items: center; }
+        .logo-area a { display: block; }
+        .logo-area img { height: 60px; width: auto; }
+        .affiliation { text-align: right; font-size: 0.8rem; color: #666; }
+        .affiliation a { color: #666; }
+        .affiliation a:hover { color: #0066cc; }
+        nav { background: #f5f5f5; border-bottom: 1px solid #ddd; }
+        nav ul { max-width: 1100px; margin: 0 auto; padding: 0 30px; list-style: none; display: flex; flex-wrap: wrap; }
+        nav li { position: relative; }
+        nav a { display: block; padding: 14px 24px; color: #333; font-size: 0.9rem; font-weight: 500; transition: background 0.2s; }
+        nav a:hover { background: #e8e8e8; text-decoration: none; }
+        nav a.active { background: #0066cc; color: #fff; }
+        .main-container { max-width: 1100px; margin: 0 auto; padding: 30px; }
+        .page-title { font-size: 1.5rem; font-weight: 500; color: #333; padding-bottom: 15px; border-bottom: 3px solid #0066cc; margin-bottom: 30px; }
+        .member-category { margin-bottom: 40px; }
+        .category-title { font-size: 1.1rem; font-weight: 500; color: #0066cc; margin-bottom: 20px; padding-left: 10px; border-left: 4px solid #0066cc; }
+        .detail-list { list-style: none; font-size: 0.85rem; color: #555; margin: 10px 0; }
+        .detail-list li { display: flex; align-items: flex-start; gap: 6px; padding: 2px 0; line-height: 1.6; }
+        .detail-list li i { color: #999; font-size: 0.8rem; width: 14px; text-align: center; flex-shrink: 0; margin-top: 3px; }
+        .detail-list a { color: #0066cc; }
+        .professor-card { display: grid; grid-template-columns: 180px 1fr; gap: 30px; padding: 25px; background: #f9f9f9; border-radius: 5px; margin-bottom: 20px; }
+        .professor-photo { width: 180px; height: 220px; object-fit: cover; border-radius: 3px; }
+        .professor-info h3 { font-size: 1.3rem; font-weight: 500; margin-bottom: 5px; }
+        .professor-info .name-en { font-size: 0.9rem; color: #666; margin-bottom: 10px; }
+        .professor-info .title { font-size: 0.9rem; color: #333; margin-bottom: 5px; }
+        .professor-info .affiliation-item { font-size: 0.85rem; color: #555; margin-bottom: 3px; }
+        .professor-info .field { font-size: 0.9rem; color: #333; margin: 12px 0 8px; }
+        .professor-info .likes { font-size: 0.85rem; color: #666; margin-top: 10px; padding-top: 10px; border-top: 1px dotted #ddd; }
+        .professor-info .likes strong { color: #333; }
+        .member-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 20px; }
+        .member-card { display: grid; grid-template-columns: 100px 1fr; gap: 15px; padding: 20px; background: #f9f9f9; border-radius: 5px; }
+        .member-photo { width: 100px; height: 120px; object-fit: cover; border-radius: 3px; }
+        .member-info h4 { font-size: 1rem; font-weight: 500; margin-bottom: 3px; }
+        .member-info .name-en { font-size: 0.8rem; color: #666; margin-bottom: 5px; }
+        .member-info .grade { font-size: 0.75rem; color: #fff; background: #0066cc; padding: 2px 8px; border-radius: 3px; display: inline-block; margin-bottom: 5px; }
+        .member-info .detail-list { font-size: 0.8rem; margin: 8px 0; }
+        .member-info .detail-list li { padding: 1px 0; }
+        .member-info .detail-list li i { font-size: 0.75rem; width: 12px; margin-top: 2px; }
+        .member-info .likes { font-size: 0.8rem; color: #666; }
+        footer { background: #f5f5f5; border-top: 1px solid #ddd; padding: 30px; margin-top: 40px; }
+        .footer-content { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 20px; }
+        .footer-info { font-size: 0.85rem; color: #666; line-height: 1.8; }
+        .footer-info strong { color: #333; }
+        .footer-contact { text-align: right; font-size: 0.85rem; color: #666; }
+        .copyright { max-width: 1100px; margin: 20px auto 0; padding-top: 20px; border-top: 1px solid #ddd; text-align: center; font-size: 0.8rem; color: #999; }
         @media (max-width: 900px) {
-            .header-top {
-                flex-direction: column;
-                text-align: center;
-                gap: 15px;
-                padding: 15px 20px;
-            }
-            
-            .affiliation {
-                text-align: center;
-            }
-            
-            nav ul {
-                justify-content: center;
-                padding: 0 10px;
-            }
-            
-            nav a {
-                padding: 12px 16px;
-                font-size: 0.85rem;
-            }
-            
-            .main-container {
-                padding: 20px;
-            }
-            
-            .professor-card {
-                grid-template-columns: 150px 1fr;
-                gap: 20px;
-                padding: 20px;
-            }
-            
-            .professor-photo {
-                width: 150px;
-                height: 180px;
-            }
-            
-            .member-grid {
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            }
-            
-            .footer-content {
-                flex-direction: column;
-            }
-            
-            .footer-contact {
-                text-align: left;
-            }
+            .header-top { flex-direction: column; text-align: center; gap: 15px; padding: 15px 20px; }
+            .affiliation { text-align: center; }
+            nav ul { justify-content: center; padding: 0 10px; }
+            nav a { padding: 12px 16px; font-size: 0.85rem; }
+            .main-container { padding: 20px; }
+            .professor-card { grid-template-columns: 150px 1fr; gap: 20px; padding: 20px; }
+            .professor-photo { width: 150px; height: 180px; }
+            .member-grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+            .footer-content { flex-direction: column; }
+            .footer-contact { text-align: left; }
         }
-        
-        /* Responsive - Mobile */
         @media (max-width: 600px) {
-            body {
-                font-size: 14px;
-            }
-            
-            .logo-area img {
-                height: 45px;
-            }
-            
-            nav ul {
-                justify-content: flex-start;
-                overflow-x: auto;
-                flex-wrap: nowrap;
-                -webkit-overflow-scrolling: touch;
-            }
-            
-            nav a {
-                padding: 10px 14px;
-                font-size: 0.8rem;
-                white-space: nowrap;
-            }
-            
-            .main-container {
-                padding: 15px;
-            }
-            
-            .professor-card {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            
-            .professor-photo {
-                width: 150px;
-                height: 180px;
-                margin: 0 auto;
-            }
-            
-            .professor-info .detail-list {
-                text-align: left;
-            }
-            
-            .member-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .member-card {
-                grid-template-columns: 80px 1fr;
-                gap: 12px;
-                padding: 15px;
-            }
-            
-            .member-photo {
-                width: 80px;
-                height: 100px;
-            }
-            
-            .footer-content {
-                padding: 0 10px;
-            }
+            body { font-size: 14px; }
+            .logo-area img { height: 45px; }
+            nav ul { justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; }
+            nav a { padding: 10px 14px; font-size: 0.8rem; white-space: nowrap; }
+            .main-container { padding: 15px; }
+            .professor-card { grid-template-columns: 1fr; text-align: center; }
+            .professor-photo { width: 150px; height: 180px; margin: 0 auto; }
+            .professor-info .detail-list { text-align: left; }
+            .member-grid { grid-template-columns: 1fr; }
+            .member-card { grid-template-columns: 80px 1fr; gap: 12px; padding: 15px; }
+            .member-photo { width: 80px; height: 100px; }
+            .footer-content { padding: 0 10px; }
         }
     </style>
-    
 </head>
 <body>
-    <!-- Header -->
     <header>
         <div class="header-top">
             <div class="logo-area">
                 <a href="index.html">
-                    <img src="https://raw.githubusercontent.com/browngem-org/photo/main/foundate/fukudalab_icon.jpg" alt="Fukuda Laboratory 福田真嗣研究室">
+                    <img src="https://raw.githubusercontent.com/browngem-org/photo/main/foundate/fukudalab_icon.jpg" alt="Fukuda Laboratory">
                 </a>
             </div>
             <div class="affiliation">
@@ -465,8 +101,6 @@
             </div>
         </div>
     </header>
-    
-    <!-- Navigation -->
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
@@ -477,12 +111,8 @@
             <li><a href="contact.html">Contact us</a></li>
         </ul>
     </nav>
-    
-    <!-- Main Content -->
     <div class="main-container">
         <h1 class="page-title">Members</h1>
-        
-        <!-- Professor -->
         <section class="member-category">
             <h2 class="category-title">Principal Investigator</h2>
             <div class="professor-card">
@@ -506,13 +136,11 @@
                 </div>
             </div>
         </section>
-        
-        <!-- Researchers -->
         <section class="member-category">
             <h2 class="category-title">Researchers / TTCKのスタッフ</h2>
             <div class="member-grid">
                 <div class="member-card">
-                    <img src="https://raw.githubusercontent.com/browngem-org/photo/56ad964616fc6daf31c483c14a93b385affe8dec/foundate/unichi-makimaki.png" alt="山田太郎" class="member-photo">
+                    <img src="https://raw.githubusercontent.com/browngem-org/photo/56ad964616fc6daf31c483c14a93b385affe8dec/foundate/unichi-makimaki.png" alt="楊さん" class="member-photo">
                     <div class="member-info">
                         <h4>楊さん</h4>
                         <p class="name-en">YAMADA Taro</p>
@@ -526,7 +154,7 @@
                     </div>
                 </div>
                 <div class="member-card">
-                    <img src="https://raw.githubusercontent.com/browngem-org/photo/56ad964616fc6daf31c483c14a93b385affe8dec/foundate/unichi-makimaki.png" alt="鈴木花子" class="member-photo">
+                    <img src="https://raw.githubusercontent.com/browngem-org/photo/56ad964616fc6daf31c483c14a93b385affe8dec/foundate/unichi-makimaki.png" alt="アイゼアさん" class="member-photo">
                     <div class="member-info">
                         <h4>アイゼアさん</h4>
                         <p class="name-en">SUZUKI Hanako</p>
@@ -539,7 +167,7 @@
                     </div>
                 </div>
                 <div class="member-card">
-                    <img src="https://raw.githubusercontent.com/browngem-org/photo/56ad964616fc6daf31c483c14a93b385affe8dec/foundate/unichi-makimaki.png" alt="鈴木花子" class="member-photo">
+                    <img src="https://raw.githubusercontent.com/browngem-org/photo/56ad964616fc6daf31c483c14a93b385affe8dec/foundate/unichi-makimaki.png" alt="石井さん" class="member-photo">
                     <div class="member-info">
                         <h4>石井さん</h4>
                         <p class="name-en">SUZUKI Hanako</p>
@@ -552,7 +180,7 @@
                     </div>
                 </div>
                 <div class="member-card">
-                    <img src="https://raw.githubusercontent.com/browngem-org/photo/56ad964616fc6daf31c483c14a93b385affe8dec/foundate/unichi-makimaki.png" alt="鈴木花子" class="member-photo">
+                    <img src="https://raw.githubusercontent.com/browngem-org/photo/56ad964616fc6daf31c483c14a93b385affe8dec/foundate/unichi-makimaki.png" alt="小松さん" class="member-photo">
                     <div class="member-info">
                         <h4>小松さん</h4>
                         <p class="name-en">SUZUKI Hanako</p>
@@ -565,7 +193,7 @@
                     </div>
                 </div>
                 <div class="member-card">
-                    <img src="https://raw.githubusercontent.com/browngem-org/photo/56ad964616fc6daf31c483c14a93b385affe8dec/foundate/unichi-makimaki.png" alt="鈴木花子" class="member-photo">
+                    <img src="https://raw.githubusercontent.com/browngem-org/photo/56ad964616fc6daf31c483c14a93b385affe8dec/foundate/unichi-makimaki.png" alt="のりこさん" class="member-photo">
                     <div class="member-info">
                         <h4>のりこさん</h4>
                         <p class="name-en">SUZUKI Hanako</p>
@@ -578,7 +206,7 @@
                     </div>
                 </div>
                 <div class="member-card">
-                    <img src="https://raw.githubusercontent.com/browngem-org/photo/56ad964616fc6daf31c483c14a93b385affe8dec/foundate/unichi-makimaki.png" alt="鈴木花子" class="member-photo">
+                    <img src="https://raw.githubusercontent.com/browngem-org/photo/56ad964616fc6daf31c483c14a93b385affe8dec/foundate/unichi-makimaki.png" alt="かがたさん" class="member-photo">
                     <div class="member-info">
                         <h4>かがたさん</h4>
                         <p class="name-en">SUZUKI Hanako</p>
@@ -592,13 +220,11 @@
                 </div>
             </div>
         </section>
-        
-        <!-- Students -->
         <section class="member-category">
             <h2 class="category-title">Students / 学生</h2>
             <div class="member-grid">
                 <div class="member-card">
-                    <img src="https://raw.githubusercontent.com/browngem-org/photo/56ad964616fc6daf31c483c14a93b385affe8dec/foundate/unichi-makimaki.png" alt="池田陽人" class="member-photo">
+                    <img src="https://raw.githubusercontent.com/browngem-org/photo/56ad964616fc6daf31c483c14a93b385affe8dec/foundate/unichi-makimaki.png" alt="岡本さん" class="member-photo">
                     <div class="member-info">
                         <h4>岡本さん</h4>
                         <p class="name-en">Haruto IKEDA</p>
@@ -676,7 +302,7 @@
                     </div>
                 </div>
                 <div class="member-card">
-                    <img src="https://raw.githubusercontent.com/browngem-org/photo/56ad964616fc6daf31c483c14a93b385affe8dec/foundate/unichi-makimaki.png" alt="中村真由" class="member-photo">
+                    <img src="https://raw.githubusercontent.com/browngem-org/photo/56ad964616fc6daf31c483c14a93b385affe8dec/foundate/unichi-makimaki.png" alt="山本英美里" class="member-photo">
                     <div class="member-info">
                         <h4>山本 英美里</h4>
                         <p class="name-en">Emily <b>YAMAMOTO</b></p>
@@ -704,7 +330,7 @@
                     </div>
                 </div>
                 <div class="member-card">
-                    <img src="https://raw.githubusercontent.com/browngem-org/photo/56ad964616fc6daf31c483c14a93b385affe8dec/foundate/unichi-makimaki.png" alt="小林さくら" class="member-photo">
+                    <img src="https://raw.githubusercontent.com/browngem-org/photo/56ad964616fc6daf31c483c14a93b385affe8dec/foundate/unichi-makimaki.png" alt="ホークインチャン" class="member-photo">
                     <div class="member-info">
                         <h4>ホークインチャン</h4>
                         <p class="name-en">Ho Kuing Chang</p>
@@ -717,13 +343,11 @@
                 </div>
             </div>
         </section>
-
-                <!-- Researchers -->
         <section class="member-category">
             <h2 class="category-title">Researchers / TTCK外のスタッフ</h2>
             <div class="member-grid">
                 <div class="member-card">
-                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200" alt="山田太郎" class="member-photo">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200" alt="尾花さん" class="member-photo">
                     <div class="member-info">
                         <h4>尾花さん</h4>
                         <p class="name-en">YAMADA Taro</p>
@@ -737,7 +361,7 @@
                     </div>
                 </div>
                 <div class="member-card">
-                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200" alt="鈴木花子" class="member-photo">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200" alt="中藤さん" class="member-photo">
                     <div class="member-info">
                         <h4>中藤さん</h4>
                         <p class="name-en">SUZUKI Hanako</p>
@@ -752,8 +376,6 @@
             </div>
         </section>
     </div>
-    
-    <!-- Footer -->
     <footer>
         <div class="footer-content">
             <div class="footer-info">
